@@ -46,17 +46,7 @@ export const gridItems = [
     img: "/grid.svg",
     spareImg: "/b4.svg",
   },
-
-  {
-    id: 5,
-    title: "Currently building a JS Animation library",
-    description: "The Inside Scoop",
-    className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
-    titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
-    spareImg: "/grid.svg",
-  },
+  // Removed id: 5 card here
   {
     id: 6,
     title: "Do you want to start a project together?",
@@ -69,40 +59,27 @@ export const gridItems = [
   },
 ];
 
+
 export const projects = [
   {
     id: 1,
-    title: "3D Solar System Planets to Explore",
-    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
-    img: "/p1.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-    link: "https://github.com/adrianhajdin?tab=repositories",
+    title: "Teaching App (AI SaaS App)",
+    des: "An AI-powered SaaS platform for personalized teaching and learning experiences.",
+    img: "/your-teaching-app-image.svg",  // replace with your actual image path
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/ai.svg"], // update icons to match your stack
+    link: "https://github.com/yourgithub/teaching-app",       // your project link
   },
   {
     id: 2,
-    title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-    img: "/p2.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "https://github.com/adrianhajdin/zoom-clone",
+    title: "Healthcare App",
+    des: "A healthcare app to help manage patient records, appointments, and telemedicine services.",
+    img: "/your-healthcare-app-image.svg",  // replace with your actual image path
+    iconLists: ["/react.svg", "/node.svg", "/mongo.svg"],      // update icons for this project
+    link: "https://github.com/yourgithub/healthcare-app",      // your project link
   },
-  {
-    id: 3,
-    title: "AI Image SaaS - Canva Application",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-    img: "/p3.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "https://github.com/adrianhajdin/ai_saas_app",
-  },
-  {
-    id: 4,
-    title: "Animated Apple Iphone 3D Website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-    img: "/p4.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "https://github.com/adrianhajdin/iphone",
-  },
+  // Add more projects as needed
 ];
+
 
 export const testimonials = [
   {
