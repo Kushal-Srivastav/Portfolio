@@ -1,6 +1,13 @@
+'use client'
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import { GlobeDemo } from "./GridGlobe";
+import Lottie from "react-lottie";
+import { useState } from "react";
+import animationData from '@/data/confetti.json';
+import MagicButton from "./MagicButton";
+import { IoCopyOutline } from "react-icons/io5";
+
 
 export const BentoGrid = ({
   className,
@@ -42,6 +49,18 @@ export const BentoGridItem = ({
   titleClassName: string;
   spareImg: string;
 }) => {
+
+ const [copied, setCopied] = useState(false)
+
+ const handleCopy = () =>{
+  navigator.clipboard.writeText('contact@Kushal_Srivatava')
+    setCopied(true); // <-- this triggers the animation
+
+     setTimeout(() => {
+    setCopied(false); // stops it after 2 seconds
+  }, 2000);
+ }
+
   return (
     <div
       className={cn(
@@ -52,7 +71,7 @@ export const BentoGridItem = ({
         background: "linear-gradient(90deg, rgba(4, 7, 29, 1) 0%, rgba(12, 14, 35, 1) 100%)",
       }}
     >
-      <div className={id === 6 ? "flex justify-center h-full" : ""}>
+      <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
             <img
@@ -126,6 +145,35 @@ export const BentoGridItem = ({
             </div>
 
         )}
+
+      { id === 6 && (
+  <div className="mt-5">
+    <div className="relative inline-block w-fit">
+      {copied && (
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-10">
+          <Lottie
+            options={{
+              loop: false,
+              autoplay: true,
+              animationData,
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice',
+              },
+            }}
+          />
+        </div>
+      )}
+
+      <MagicButton 
+        title={copied ? 'Email copied' : 'Copy my email.'}
+        icon={<IoCopyOutline />}
+        position="left"
+        otherClasses="bg-[#161a31]"
+        handleClick={handleCopy}
+      />
+    </div>
+  </div>
+)}
       </div>
     </div>
     </div>
