@@ -3,6 +3,7 @@ import { projects } from '@/data'
 import React, { useState } from 'react'
 import { PinContainer } from './ui/3d-pin'
 import { FaLocationArrow } from 'react-icons/fa'
+import Image from 'next/image'
 
 const RecentProjects = () => {
   const [expandedDescriptions, setExpandedDescriptions] = useState<{ [key: number]: boolean }>({});
@@ -31,13 +32,16 @@ const RecentProjects = () => {
               {/* ✅ Image Section */}
               <div className='relative w-full h-[300px] mb-8'>
                 <div className='absolute inset-0 overflow-hidden rounded-2xl bg-[#13162d]'>
-                  <img src="/bg.png" alt="bg-img" className='w-full h-full object-cover' />
+                  <Image src="/bg.png" alt="bg-img" fill className='w-full h-full object-cover' />
                 </div>
-                <img
-                  src={img}
-                  alt={title}
-                  className='absolute bottom-0 z-10 max-h-full object-contain'
-                />
+                <div className='absolute bottom-0 z-10 w-full h-full'>
+                  <Image
+                    src={img}
+                    alt={title}
+                    fill
+                    className='object-contain'
+                  />
+                </div>
               </div>
 
               <div className='px-4'>
@@ -67,7 +71,7 @@ const RecentProjects = () => {
                         key={icon}
                         className='border border-white/[0.2] rounded-full bg-black w-10 h-10 lg:w-12 lg:h-12 flex justify-center items-center'
                       >
-                        <img src={icon} alt={icon} className='p-2.5' />
+                        <Image src={icon} alt={icon} width={32} height={32} className='p-2.5' />
                       </div>
                     ))}
                   </div>
