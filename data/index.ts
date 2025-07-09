@@ -62,19 +62,19 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "Teaching App (AI SaaS App)",
-    des: "An AI-powered SaaS platform for personalized teaching and learning experiences.",
-    img: "/your-teaching-app-image.svg",  // replace with your actual image path
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/ai.svg"], // update icons to match your stack
-    link: "https://github.com/yourgithub/teaching-app",       // your project link
+    title: "Converso (AI SaaS App)",
+    des: "An AI-powered SaaS platform revolutionizing personalized education through interactive voice conversations. Features include custom AI companions for different subjects like Mathematics, Language, and Science, with unique personalities and teaching styles. Students can create their own learning companions, track progress, and engage in natural conversations that make learning both effective and enjoyable.",
+    img: "/converso.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg"],
+    link: "https://ai-saas-teaching-app.vercel.app/",
   },
   {
     id: 2,
-    title: "Healthcare App",
-    des: "A healthcare app to help manage patient records, appointments, and telemedicine services.",
-    img: "/your-healthcare-app-image.svg",  // replace with your actual image path
-    iconLists: ["/react.svg", "/node.svg", "/mongo.svg"],      // update icons for this project
-    link: "https://github.com/yourgithub/healthcare-app",      // your project link
+    title: "HealthOn",
+    des: "A modern healthcare platform that streamlines patient care with digital records, telemedicine, and smart appointment scheduling. Features real-time health monitoring and secure medical data management.",
+    img: "/healthon.svg",
+    iconLists: ["/next.svg", "/ts.svg", "/tail.svg"],
+    link: "https://github.com/yourgithub/healthcare-app",
   },
   // Add more projects as needed
 ];

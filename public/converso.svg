@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background with gradient -->
+    <rect width="800" height="600" rx="20" fill="url(#grad1)"/>
+    
+    <!-- Laptop base -->
+    <path d="M200 300 L600 300 L650 450 L150 450 Z" fill="#2A2B3D"/>
+    
+    <!-- Laptop screen -->
+    <rect x="250" y="150" width="300" height="200" rx="10" fill="#1A1B2E"/>
+    <rect x="270" y="170" width="260" height="160" rx="5" fill="#232436"/>
+    
+    <!-- AI Chat bubbles -->
+    <circle cx="300" cy="200" r="15" fill="#6C63FF"/> <!-- AI avatar -->
+    <rect x="330" y="190" width="120" height="30" rx="15" fill="#6C63FF" opacity="0.8"/> <!-- AI message -->
+    
+    <circle cx="500" cy="250" r="15" fill="#4CAF50"/> <!-- User avatar -->
+    <rect x="350" y="240" width="120" height="30" rx="15" fill="#4CAF50" opacity="0.8"/> <!-- User message -->
+    
+    <!-- Floating elements representing AI/ML -->
+    <circle cx="200" cy="150" r="30" fill="#FF6B6B" opacity="0.6"/>
+    <circle cx="600" cy="200" r="40" fill="#4ECDC4" opacity="0.6"/>
+    <circle cx="500" cy="100" r="25" fill="#45B7D1" opacity="0.6"/>
+    
+    <!-- Neural network connections -->
+    <path d="M200 150 L300 200" stroke="#6C63FF" stroke-width="2" opacity="0.5"/>
+    <path d="M600 200 L500 250" stroke="#6C63FF" stroke-width="2" opacity="0.5"/>
+    <path d="M500 100 L450 190" stroke="#6C63FF" stroke-width="2" opacity="0.5"/>
+    
+    <!-- Gradient definition -->
+    <defs>
+        <linearGradient id="grad1" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" style="stop-color:#1A1B2E"/>
+            <stop offset="100%" style="stop-color:#2A2B3D"/>
+        </linearGradient>
+    </defs>
+</svg> 
