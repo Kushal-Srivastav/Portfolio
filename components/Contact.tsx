@@ -4,6 +4,7 @@ import React from 'react';
 import { socialMedia } from '@/data';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { getImageUrl } from '@/utils/imageUtils';
 
 const Contact = () => {
   return (
@@ -26,7 +27,14 @@ const Contact = () => {
               rel="noopener noreferrer"
               className='w-full h-full flex items-center justify-center'
             >
-              <Image src={img} alt="social" width={32} height={32} className='w-8 h-8' />
+              <Image 
+                src={getImageUrl(img)} 
+                alt={img.split('/').pop()?.split('.')[0] || 'social'} 
+                width={32} 
+                height={32} 
+                className='w-8 h-8'
+                unoptimized={img.endsWith('.svg')}
+              />
             </a>
           </motion.div>
         ))}

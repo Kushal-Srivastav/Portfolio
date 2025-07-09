@@ -7,6 +7,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: [
       'images.unsplash.com',
       'github.com',
@@ -14,21 +17,10 @@ const nextConfig = {
       'media.licdn.com',
       'lh3.googleusercontent.com',
       'platform-lookaside.fbsbx.com',
-      'scontent.fdel1-4.fna.fbcdn.net',
-      'scontent.fdel1-3.fna.fbcdn.net',
-      'scontent.fdel1-2.fna.fbcdn.net',
-      'scontent.fdel1-1.fna.fbcdn.net',
-      'scontent.fccu2-4.fna.fbcdn.net',
-      'scontent.fccu2-3.fna.fbcdn.net',
-      'scontent.fccu2-2.fna.fbcdn.net',
-      'scontent.fccu2-1.fna.fbcdn.net',
-      'platform-lookaside.fbsbx.com',
       'res.cloudinary.com',
       'cdn.sanity.io',
       'vercel.com',
       'vercel.app',
-      '*.vercel.app',
-      '*.vercel.com'
     ],
     remotePatterns: [
       {
@@ -36,6 +28,30 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+  },
+  webpack(config) {
+    // Grab the existing rule that handles SVG imports
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.('.svg')
+    )
+
+    config.module.rules.push(
+      // Reapply the existing rule, but only for svg imports ending in ?url
+      {
+        ...fileLoaderRule,
+        test: /\.svg\?url$/,
+      },
+      // Convert all other *.svg imports to React components
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      }
+    )
+
+    // Modify the file loader rule to ignore *.svg, since we have it handled now.
+    fileLoaderRule.exclude = /\.svg$/i
+
+    return config
   },
 }
 
