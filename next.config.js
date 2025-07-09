@@ -1,57 +1,75 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // Enable static export for Netlify
+  output: 'export',
+  // Add trailing slashes for better compatibility with Netlify
+  trailingSlash: true,
+  
+  // Disable type checking during build for faster builds
   typescript: {
     ignoreBuildErrors: true,
   },
+  
+  // Disable ESLint during build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
+  // Image optimization configuration
   images: {
+    // Required for static export
+    unoptimized: true,
+    // Allow SVG images
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Allowed image domains
     domains: [
       'images.unsplash.com',
+      'plus.unsplash.com',
       'github.com',
       'avatars.githubusercontent.com',
       'media.licdn.com',
-      'lh3.googleusercontent.com',
-      'platform-lookaside.fbsbx.com',
-      'res.cloudinary.com',
-      'cdn.sanity.io',
-      'vercel.com',
-      'vercel.app',
-    ],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
+      'media.istockphoto.com',
+      'i.ibb.co',
+      'i.imgur.com',
+      'img.freepik.com',
+      'www.w3.org',
+      'raw.githubusercontent.com',
+      'camo.githubusercontent.com',
     ],
   },
+  
+  // Webpack configuration for handling SVGs
   webpack(config) {
-    // Grab the existing rule that handles SVG imports
+    // Get the file loader rule
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg')
     )
 
-    config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
-      {
-        ...fileLoaderRule,
-        test: /\.svg\?url$/,
-      },
-      // Convert all other *.svg imports to React components
-      {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      }
-    )
+    // Add SVGR loader for SVG files
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
 
-    // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i
+    // Exclude SVGs from the default file loader
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/i
+    }
 
     return config
+  },
+  
+  // Generate a static build ID
+  generateBuildId: async () => {
+    return 'netlify-static-build';
+  },
+  
+  // Define the path map for static export
+  exportPathMap: async function() {
+    return {
+      '/': { page: '/' },
+      // Add other static paths here if needed
+    };
   },
 }
 

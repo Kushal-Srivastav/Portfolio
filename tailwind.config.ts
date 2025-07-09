@@ -18,6 +18,7 @@ const config = {
   ],
   prefix: "",
   theme: {
+    darkMode: 'class',
     container: {
       center: true,
       padding: "2rem",
@@ -28,20 +29,24 @@ const config = {
     extend: {
       colors: {
         black: {
-          DEFAULT: "#000",
+          DEFAULT: "#000000",
           100: "#000319",
           200: "rgba(17, 25, 40, 0.75)",
           300: "rgba(255, 255, 255, 0.125)",
         },
         white: {
-          DEFAULT: "#FFF",
+          DEFAULT: "#FFFFFF",
           100: "#BEC1DD",
           200: "#C1C2D3",
         },
         blue: {
-          "100": "#E4ECFF",
+          100: "#E4ECFF",
         },
-        purple: "#CBACF9",
+        purple: {
+          DEFAULT: "#CBACF9",
+          dark: "#9B7FD9",
+          light: "#D9C7FF",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -161,6 +166,9 @@ const config = {
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
     },
+  },
+  corePlugins: {
+    preflight: true,
   },
   plugins: [
     require("tailwindcss-animate"),
