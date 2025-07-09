@@ -63,15 +63,16 @@ export const BackgroundGradientAnimation = ({
       if (!interactiveRef.current) {
         return;
       }
-      setCurX(curX + (tgX - curX) / 20);
-      setCurY(curY + (tgY - curY) / 20);
+      setCurX(prevX => prevX + (tgX - prevX) / 20);
+      setCurY(prevY => prevY + (tgY - prevY) / 20);
       interactiveRef.current.style.transform = `translate(${Math.round(
         curX
       )}px, ${Math.round(curY)}px)`;
     }
 
-    move();
-  }, [tgX, tgY]);
+    const frame = requestAnimationFrame(move);
+    return () => cancelAnimationFrame(frame);
+  }, [tgX, tgY, curX, curY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
@@ -83,7 +84,9 @@ export const BackgroundGradientAnimation = ({
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    if (typeof window !== 'undefined') {
+      setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    }
   }, []);
 
   return (

@@ -24,19 +24,15 @@ export const FloatingNav = ({
 
   const [visible, setVisible] = useState(false);
 
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
+  useMotionValueEvent(scrollYProgress, "change", (current: number) => {
     // Check if current is not undefined and is a number
     if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+      const direction = current - (scrollYProgress.getPrevious() || 0);
 
       if (scrollYProgress.get() < 0.05) {
         setVisible(false);
       } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
+        setVisible(direction < 0);
       }
     }
   });
@@ -60,7 +56,7 @@ export const FloatingNav = ({
           className
         )}
       >
-        {navItems.map((navItem: any, idx: number) => (
+        {navItems.map((navItem, idx: number) => (
           <a
             key={`link=${idx}`}
             href={navItem.link}
